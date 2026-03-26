@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="cat_browserlogo.png">
 <title>cat browser</title>
-
 <style>
   body {
     margin: 0;
@@ -14,27 +13,50 @@
     color: white;
   }
 
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #111;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    gap: 4px;
+    padding: 10px 20px;
+  }
+  nav button {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 0.9rem;
+    font-family: system-ui, sans-serif;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav button:hover {
+    background: #222;
+    color: white;
+  }
+  nav button.active {
+    background: #0078d4;
+    color: white;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
   .container {
     max-width: 900px;
     margin: auto;
-    padding: 80px 20px;
+    padding: 100px 20px 80px;
     text-align: center;
   }
-
-  .logo {
-    margin-bottom: 20px;
-  }
-
-  .logo img {
-    width: 360px;
-    height: auto;
-  }
-
-  .tagline {
-    opacity: 0.8;
-    margin-bottom: 40px;
-  }
-
+  .logo { margin-bottom: 20px; }
+  .logo img { width: 360px; height: auto; }
+  .tagline { opacity: 0.8; margin-bottom: 40px; }
   .btn {
     display: inline-block;
     margin: 10px 10px;
@@ -46,115 +68,220 @@
     font-weight: 600;
     border: none;
     cursor: pointer;
+    font-size: 1rem;
   }
-
-  .preview {
-    margin-top: 60px;
-  }
-
-  .preview img {
-    max-width: 100%;
-    border-radius: 14px;
-  }
-
-  .section {
-    margin-top: 80px;
-    opacity: 0.85;
-  }
-
+  .btn:hover { background: #006cbd; }
+  .preview { margin-top: 60px; }
+  .preview img { max-width: 100%; border-radius: 14px; }
+  .section { margin-top: 80px; opacity: 0.85; }
   .features {
     margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
   }
-
   .feature {
     background: #222;
     padding: 25px;
     border-radius: 15px;
     border: 1px solid #2a2a2a;
   }
+  footer { margin-top: 120px; opacity: 0.4; font-size: 0.8rem; }
 
-  footer {
-    margin-top: 500px;
-    opacity: 0.4;
-    font-size: 0.8rem;
+  .store-page {
+    max-width: 900px;
+    margin: auto;
+    padding: 100px 20px 80px;
   }
+  .store-page h2 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+  .store-page .subtitle {
+    opacity: 0.5;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+  }
+  .store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .store-card {
+    background: #222;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .store-card .card-icon {
+    font-size: 2rem;
+  }
+  .store-card h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .store-card p {
+    margin: 0;
+    opacity: 0.55;
+    font-size: 0.85rem;
+    flex: 1;
+  }
+  .store-card .install-btn {
+    margin-top: 6px;
+    padding: 9px 20px;
+    background: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    align-self: flex-start;
+    transition: background 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .store-card .install-btn:hover { background: #006cbd; }
+
+  .tutorial {
+    margin-top: 60px;
+    background: #222;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 30px;
+    opacity: 0.85;
+  }
+  .tutorial h3 {
+    margin-top: 0;
+  }
+
 </style>
 </head>
-
 <body>
 
-  <div class="container">
+  <nav>
+    <button class="active" onclick="showPage('home', this)">download</button>
+    <button onclick="showPage('extensions', this)">extensions</button>
+    <button onclick="showPage('themes', this)">themes</button>
+  </nav>
 
-    <div class="logo">
-      <img src="icon2_dark.png" alt="cat browser logo">
-    </div>
-
-    <p class="tagline">
-      very cool lightweight browser made for people that love cats!!!
-    </p>
-
-    <div>
-      <a href="https://github.com/anamelessguy1/cat-browser/releases/latest/download/cat-browser-win64.zip" class="btn">
-        download for windows 64
-      </a>
-
-      <a href="https://github.com/anamelessguy1/cat-browser/releases/latest/download/cat-browser-win32.zip" class="btn">
-        download for windows 32
-      </a>
-
-      <a href="https://github.com/anamelessguy1/cat-browser/releases/latest/download/Cat_Browser-x86_64.AppImage" class="btn">
-        download appimage for linux
-      </a>
-      <a href="https://github.com/anamelessguy1/cat-browser-android/releases/latest/download/cat-browser.apk" class="btn">
-        download android apk
-      </a>
-    </div>
-
-    <div class="preview">
-      <img src="screenshot_catbrowser.png" alt="cat browser preview">
-      <br>
-      <a href="https://github.com/anamelessguy1/cat-browser" class="btn">
-        source code
-      </a>
-    </div>
-    <div class="features">
-      <div class="feature">
-        <p>built with qt6 web engine and python very cool wow</p>
+  <div id="home" class="page active">
+    <div class="container">
+      <div class="logo">
+        <img src="icon2_dark.png" alt="cat browser logo">
       </div>
-      <div class="feature">
-        <p>no data collecting or telemetry unlike other browsers</p>
+      <p class="tagline">
+        very cool lightweight browser made for people that love cats!!!
+      </p>
+      <div>
+        <a href="https://github.com/anamelessguy1/cat-browser/releases/latest/download/cat-browser-win64.zip" class="btn">download for windows 64</a>
+        <a href="https://github.com/anamelessguy1/cat-browser/releases/latest/download/cat-browser-win32.zip" class="btn">download for windows 32</a>
+        <a href="https://github.com/anamelessguy1/cat-browser/releases/latest/download/Cat_Browser-x86_64.AppImage" class="btn">download appimage for linux</a>
+        <a href="https://github.com/anamelessguy1/cat-browser-android/releases/latest/download/cat-browser.apk" class="btn">download android apk</a>
       </div>
-    </div>
-<div>
-    <div class="section">
-      <h3>windows instructions</h3>
-      <p>1. download and extract the zip file</p>
-      <p>2. run the cmd file as administrator</p>
-    </div>
-
-    <div class="section">
-      <h3>linux (arch)</h3>
-      <p>install an aur helper, then run:</p>
-      <p><code>aur-helper -S cat-browser-git</code></p>
-    </div>
-
-    <div>
-      <div class="feature">
-        <p>what are you looking at go downlad it already</p>
+      <div class="preview">
+        <img src="screenshot_catbrowser.png" alt="cat browser preview">
+        <br><br>
+        <a href="https://github.com/anamelessguy1/cat-browser" class="btn">source code</a>
       </div>
+      <div class="features">
+        <div class="feature">
+          <p>built with qt6 web engine and python very cool wow</p>
+        </div>
+        <div class="feature">
+          <p>no data collecting or telemetry unlike other browsers</p>
+        </div>
+      </div>
+      <div>
+        <div class="section">
+          <h3>windows instructions</h3>
+          <p>1. download and extract the zip file</p>
+          <p>2. run the cmd file as administrator</p>
+        </div>
+        <div class="section">
+          <h3>arch linux</h3>
+          <p>install an aur helper, then run:</p>
+          <p><code>aur-helper -S cat-browser-git</code></p>
+        </div>
+        <div style="margin-top:40px;">
+          <div class="feature">
+            <p>what are you looking at go downlad it already</p>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
     </div>
-<div>
-
-
-</div>
-    <footer>
-     i thikn i like fembyos mggghffff,,,,,
-    </footer>
-
   </div>
+
+  <div id="extensions" class="page">
+    <div class="store-page">
+      <h2>extensions</h2>
+      <p class="subtitle">very self explanatory</p>
+      <div class="store-grid">
+        <div class="store-card">
+          <h3>palceholder</h3>
+          <p>e</p>
+          <a href="extension1.zip" class="install-btn">download</a>
+        </div>
+        <div class="store-card">
+          <h3>aa</h3>
+          <p>asdasdasd</p>
+          <a href="extension2.zip" class="install-btn">download</a>
+        </div>
+      </div>
+
+      <div class="tutorial">
+        <h3>how to install extensions</h3>
+        <p>fart</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="page">
+    <div class="store-page">
+      <h2>themes</h2>
+      <p class="subtitle">make your cat browser how you want it to be</p>
+      <div class="store-grid">
+        <div class="store-card theme-card">
+          <h3>y</h3>
+          <p>y</p>
+          <a href="e" class="install-btn">download</a>
+        </div>
+        <div class="store-card theme-card">
+          <h3>y</h3>
+          <p>y</p>
+          <a href="e" class="install-btn">download</a>
+        </div>
+        <div class="store-card theme-card">
+          <h3>e</h3>
+          <p>qwe</p>
+          <a href="ep" class="install-btn">download</a>
+        </div>
+        <div class="e">
+          <h3>e</h3>
+          <p>h</p>
+          <a href="ep" class="install-btn">download</a>
+        </div>
+      </div>
+
+      <div class="tutorial">
+        <h3>how to install themes</h3>
+        <p>a</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPage(id, btn) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
